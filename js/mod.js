@@ -2,7 +2,7 @@ let modInfo = {
 	name: "The String Tree",
 	id: "thestringtheorytree24035",
 	author: "BattleWoofer",
-	pointsName: "points",
+	pointsName: "strings",
 	discordName: "",
 	discordLink: "",
 	initialStartPoints: new Decimal (10), // Used for hard resets and new players
