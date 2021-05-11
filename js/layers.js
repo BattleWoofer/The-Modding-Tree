@@ -4,7 +4,7 @@ addLayer("p", {
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
-		points: new Decimal(0),
+		points: new Decimal(1),
     }},
     color: "#4BDC13",
     requires: new Decimal(1), // Can be a function that takes requirement increases into account
@@ -12,7 +12,7 @@ addLayer("p", {
     baseResource: "points", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
-    exponent: 1.1, // Prestige currency exponent
+    exponent: 0.8, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         return mult
@@ -35,7 +35,7 @@ addLayer("p", {
             cost: new Decimal(0),
          //   unlocked() { return player.m.unlocked || hasUpgrade("m", 11) },
             effect() { 
-				eff = new Decimal(player.p.points.add(1))
+				eff = new Decimal(player.p.points)
                 return eff
             },
         },
