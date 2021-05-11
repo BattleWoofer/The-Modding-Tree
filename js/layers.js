@@ -32,7 +32,7 @@ addLayer("p", {
         11: {
             
             description: "Producers produce strings!",
-            cost() { return new Decimal(0) },
+            cost: new Decimal(0),
          //   unlocked() { return player.m.unlocked || hasUpgrade("m", 11) },
             effect() { 
 				eff = new Decimal(player.p.points.add(1))
