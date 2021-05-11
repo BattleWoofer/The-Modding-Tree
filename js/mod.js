@@ -42,7 +42,7 @@ function getPointGen() {
 		return new Decimal(1)
 
 	let gain = new Decimal(1)
-	gain = gain.times(P)
+	gain = gain.times(tmp.P)
 	return gain
 }
 
