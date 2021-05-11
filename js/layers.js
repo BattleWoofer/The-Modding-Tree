@@ -1,4 +1,4 @@
-addLayer("P", {
+addLayer("p", {
     name: "producers", // This is optional, only used in a few places, If absent it just uses the layer id.
     symbol: "P", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -24,8 +24,30 @@ addLayer("P", {
     hotkeys: [
         {key: "p", description: "P: Reset for prestige points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    layerShown(){return true}
+    layerShown(){return true},
+
+    upgrades: {
+        rows: 1,
+        cols: 1,
+        11: {
+            
+            description: "Producers produce strings!",
+            cost() { return new Decimal(0) },
+         //   unlocked() { return player.m.unlocked || hasUpgrade("m", 11) },
+            effect() { 
+				eff = new Decimal(player.p.points)
+                return eff
+            },
+        },
+}
 })
+
+
+
+
+
+
+
 
 addLayer("t", {
     name: "test", // This is optional, only used in a few places, If absent it just uses the layer id.
