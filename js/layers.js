@@ -35,7 +35,7 @@ addLayer("p", {
             cost() { return new Decimal(0) },
          //   unlocked() { return player.m.unlocked || hasUpgrade("m", 11) },
             effect() { 
-				eff = new Decimal(player.p.points)
+				eff = new Decimal(player.p.points.add(1))
                 return eff
             },
         },
