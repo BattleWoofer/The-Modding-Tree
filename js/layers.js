@@ -43,7 +43,7 @@ addLayer("p", {
             cost: new Decimal(7),
 
             effect() {
-               eff = player.p.points.log(5).pow(2);
+               eff = player.p.points.add(1).log(5).add(5).pow(2);
                return eff
             },
         },
