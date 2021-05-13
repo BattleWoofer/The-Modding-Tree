@@ -42,6 +42,7 @@ addLayer("p", {
         12: {
             description: "Producers boost production",
             cost: new Decimal(7),
+            
             effect() {
                 eff = player.p.points.log(5).pow(2);
                 return eff
