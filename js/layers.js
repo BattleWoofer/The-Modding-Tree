@@ -28,7 +28,7 @@ addLayer("p", {
 
     upgrades: {
          rows: 1,
-         cols: 2,
+         cols: 3,
             11: {
             
              description: "Producers produce strings!",
@@ -40,10 +40,20 @@ addLayer("p", {
         },
         12: {
             description: "Producers boost production",
-            cost: new Decimal(7),
+            cost: new Decimal(10),
 
             effect() {
-               eff = player.p.points.add(1).log(5).add(5).pow(2);
+               eff = player.p.points.add(1).log(5).add(5).pow(2).div(4);
+               return eff
+            },
+        },
+
+        13: {
+            description: "Gain a static boost",
+            cost: new Decimal(25),
+
+            effect() {
+               eff = new Decimal(2);
                return eff
             },
         },
