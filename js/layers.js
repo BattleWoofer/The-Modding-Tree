@@ -90,7 +90,7 @@ addLayer("a", {
             name: "A Start",
             tooltip: "1 AP: Have 20,000 strings",
             done(){
-                return player.points(20000)
+                return player.points.tmp(20000)
             }
         },
         12: {
