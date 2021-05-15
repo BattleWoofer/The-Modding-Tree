@@ -27,8 +27,8 @@ addLayer("p", {
     layerShown(){return true},
 
     upgrades: {
-         rows: 1,
-         cols: 3,
+         rows: 2,
+         cols: 5,
             11: {
             
              description: "Producers produce strings!",
@@ -57,13 +57,52 @@ addLayer("p", {
                return eff
             },
         },
+
+        21: {
+            description: "Unlock Particle Accelerators",
+            cost: new Decimal(25),
+
+            effect() {
+               eff = new Decimal(2);
+               return eff
+            },
+        },
         },
     }
 )
-// if broken manke 52 }) thx
 
+addLayer("a", {
+    name: "Acheivements",
+    symbol: "A",
+    position: 0,
+    startData(){ return {
+        points = new Decimal(0),
+    }},
+    requires: new Decimal(0),
+    resource: "AP",
+    type: "none",
+    exponent: 0.5,
+    layerShown() {return true},
+    achievements:{
+        rows: 1,
+        cols: 2,
+        11: {
+            name: "A Start",
+            tooltip: "1 AP: Have 20,000 strings",
+            done(){
+                return player.points(20000)
+            }
+        },
+        12: {
+            name: "Dimension Collection",
+            tooltip: "1 AP: Own 32 producers",
+            done(){
+                return player.p.points(32)
+            }
+        },
+    }
 
-
+})
 
 
 
