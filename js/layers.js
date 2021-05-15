@@ -76,7 +76,7 @@ addLayer("a", {
     symbol: "A",
     position: 0,
     startData(){ return {
-        points = new Decimal(0),
+        points: new Decimal(0),
     }},
     requires: new Decimal(0),
     resource: "AP",
