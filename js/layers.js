@@ -97,7 +97,7 @@ addLayer("a", {
             name: "Dimension Collection",
             tooltip: "1 AP: Own 32 producers",
             done(){
-                return player.p.points(32)
+                return player.p.points.gte(32)
             }
         },
     }
