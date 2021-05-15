@@ -82,6 +82,7 @@ addLayer("a", {
     resource: "AP",
     type: "none",
     exponent: 0.5,
+    row: "side",
     layerShown() {return true},
     achievements:{
         rows: 1,
