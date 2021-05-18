@@ -84,6 +84,18 @@ addLayer("a", {
     exponent: 0.5,
     row: "side",
     layerShown() {return true},
+    effbase(){
+        eff = new Decimal(2)
+        return eff
+    },
+    effect(){
+        let eff = this.base()
+        eff = Decimal.pow(eff,player.a.points)
+        return eff
+    },
+    effectDescription() {
+        return "which boost sting gain by " + format(tmp.a.effect)
+    },
     achievements:{
         rows: 1,
         cols: 2,
