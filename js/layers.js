@@ -104,6 +104,9 @@ addLayer("a", {
             tooltip: "1 AP: Have 20,000 strings",
             done(){
                 return player.points.gte(20000)
+            },
+            onComplete() {
+                addPoints("a",1)
             }
         },
         12: {
@@ -111,6 +114,9 @@ addLayer("a", {
             tooltip: "1 AP: Own 32 producers",
             done(){
                 return player.p.points.gte(32)
+            },
+            onComplete() {
+                addPoints("a",1)
             }
         },
     }
