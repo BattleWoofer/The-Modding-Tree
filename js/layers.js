@@ -89,7 +89,7 @@ addLayer("a", {
         return eff
     },
     effect(){
-        let eff = this.base()
+        let eff = this.effbase()
         eff = Decimal.pow(eff,player.a.points)
         return eff
     },
