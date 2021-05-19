@@ -44,7 +44,7 @@ addLayer("p", {
             cost: new Decimal(10),
 
             effect() {
-               eff = new Decimal(1.1).pow(player.p.points.pow).add(1);
+               eff = new Decimal(1.1).pow(player.p.points).add(1);
                return eff
             },
             effectDisplay() { return format(tmp.p.upgrades[12].effect)+"x" },
