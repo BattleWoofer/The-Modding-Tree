@@ -37,6 +37,7 @@ addLayer("p", {
 				eff = new Decimal(player.p.points)
                 return eff
             },
+            effectDisplay() { return format(tmp.p.upgrades[11].effect)+"/s" },
         },
         12: {
             description: "Producers boost production",
@@ -46,6 +47,7 @@ addLayer("p", {
                eff = player.p.points.add(1).log(5).add(5).pow(2).div(4);
                return eff
             },
+            effectDisplay() { return format(tmp.p.upgrades[12].effect)+"x" },
         },
 
         13: {
@@ -56,10 +58,22 @@ addLayer("p", {
                eff = new Decimal(2);
                return eff
             },
+            effectDisplay() { return format(tmp.p.upgrades[13].effect)+"x" },
+        },
+
+        14: {
+            description: "Boost string gain based on strings",
+            cost: new Decimal(34),
+
+            effect() {
+                eff = player.points.plus(1).log(5).pow(1.5);
+                return eff
+            },
+            effectDisplay() { return format(tmp.p.upgrades[14].effect)+"x" },
         },
 
         21: {
-            description: "Unlock Particle Accelerators",
+            description: "Unlock Achievements",
             cost: new Decimal(25),
 
             effect() {
@@ -94,7 +108,7 @@ addLayer("a", {
         return eff
     },
     effectDescription() {
-        return "which boost sting gain by " + format(tmp.a.effect)
+        return "which boosts string gain by " + format(tmp.a.effect)
     },
     achievements:{
         rows: 1,
