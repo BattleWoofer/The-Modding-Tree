@@ -82,6 +82,27 @@ addLayer("p", {
             },
         },
         },
+        buyables: {
+            rows: 1,
+            cols: 1,
+            11: {
+                title: "Particle Accererators",
+                total(){
+                    let total = getBuyableAmount("p",11)
+                    return total
+                },
+                base(){
+                    base = new Decimal(1.1)
+                    return base
+                },
+                effect(){
+                    let x = tmp[this.layer].buyables[this.id].total
+                    let base = tmp[this.layer].buyables[this.id].base
+                    let eff = Decimal.pow(base, x)
+                    return eff
+                }
+            }
+        }
     }
 )
 
