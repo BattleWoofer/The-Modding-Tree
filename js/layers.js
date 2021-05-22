@@ -113,6 +113,12 @@ addLayer("p", {
                         player[this.layer].buyables[this.id] = player[this.layer].buyables[this.id].add(1).max(1)
                     }
                 },
+                display() { // Everything else displayed in the buyable button after the title
+                    return "Multiply string gain by "+format(this.base())+".\n\
+                    Cost: " + format(tmp[this.layer].buyables[this.id].cost)+" strings\n\
+                    Effect: " + format(tmp[this.layer].buyables[this.id].effect)+"x\n\
+                    Amount: " + formatWhole(getBuyableAmount("p", 11)) + extra
+                },
             }
         }
     }
