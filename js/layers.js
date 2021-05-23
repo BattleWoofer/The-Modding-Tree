@@ -102,7 +102,7 @@ addLayer("p", {
                     return eff
                 },
                 cost(x=player[this.layer].buyables[this.id]) { // cost for buying xth buyable, can be an object if there are multiple currencies
-                    let cost = Decimal.pow(2, x)
+                    let cost = Decimal.pow(2, x).add(1e9)
                     return cost.floor()},
                     canAfford() {
                         return player.points.gte(tmp[this.layer].buyables[this.id].cost)},
