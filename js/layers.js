@@ -84,7 +84,7 @@ addLayer("p", {
         },
         buyables: {
             rows: 1,
-            cols: 1,
+            cols: 2,
             11: {
                 title: "Particle Accererators",
                 total(){
@@ -102,7 +102,7 @@ addLayer("p", {
                     return eff
                 },
                 cost(x=player[this.layer].buyables[this.id]) { // cost for buying xth buyable, can be an object if there are multiple currencies
-                    let cost = Decimal.pow(2, x).add(1e9)
+                    let cost = Decimal.pow(2, x).mul(1e9)
                     return cost.floor()},
                     canAfford() {
                         return player.points.gte(tmp[this.layer].buyables[this.id].cost)},
@@ -118,6 +118,41 @@ addLayer("p", {
                     Cost: " + format(tmp[this.layer].buyables[this.id].cost)+" strings\n\
                     Effect: " + format(tmp[this.layer].buyables[this.id].effect)+"x\n\
                     Amount: " + formatWhole(getBuyableAmount("p", 11))
+                },
+            },
+            12: {
+                title: "Particle Accererators",
+                total(){
+                    let total = getBuyableAmount("p",12)
+                    return total
+                },
+                base(){
+                    base = new Decimal(10)
+                    return base
+                },
+                effect(){
+                    let x = tmp[this.layer].buyables[this.id].total
+                    let base = tmp[this.layer].buyables[this.id].base
+                    let eff = Decimal.pow(base, x)
+                    return eff
+                },
+                cost(x=player[this.layer].buyables[this.id]) { // cost for buying xth buyable, can be an object if there are multiple currencies
+                    let cost = Decimal.pow(2, x).mul(0)
+                    return cost.floor()},
+                    canAfford() {
+                        return player.points.gte(tmp[this.layer].buyables[this.id].cost)},
+                buy() { 
+                    cost = tmp[this.layer].buyables[this.id].cost
+                    if (this.canAfford()) {
+                        player.points = player.points.sub(cost).max(0)
+                        player[this.layer].buyables[this.id] = player[this.layer].buyables[this.id].add(1).max(1)
+                    }
+                },
+                display() { // Everything else displayed in the buyable button after the title
+                    return "Multiply string gain by "+format(this.base())+".\n\
+                    Cost: " + format(tmp[this.layer].buyables[this.id].cost)+" strings\n\
+                    Effect: " + format(tmp[this.layer].buyables[this.id].effect)+"x\n\
+                    Amount: " + formatWhole(getBuyableAmount("p", 12))
                 },
             }
         }
@@ -172,6 +207,36 @@ addLayer("a", {
                 addPoints("a",1)
             }
         },
+        13: {
+            name: "Start Pushing",
+            tooltip: "1 AP: Have 100,000,000 strings",
+            done(){
+                return player.points.gte(1e8)
+            },
+            onComplete() {
+                addPoints("a",1)
+            }
+        },
+        14: {
+            name: "That Was Weak",
+            tooltip: "1 AP: Get 2 particle accelerators",
+            done(){
+                return player.p.buyables[11].eq(2)
+            },
+            onComplete() {
+                addPoints("a",1)
+            }
+        },
+        15: {
+            name: "Are You Still OK?",
+            tooltip: "1 AP: Own 85 producers",
+            done(){
+                return player.p.points.gte(85)
+            },
+            onComplete() {
+                addPoints("a",1)
+            }
+        },
     }
 
 })
@@ -179,21 +244,21 @@ addLayer("a", {
 
 
 
-addLayer("t", {
-    name: "test", // This is optional, only used in a few places, If absent it just uses the layer id.
-    symbol: "N", // This appears on the layer's node. Default is the id with the first letter capitalized
+addLayer("s", {
+    name: "shards", // This is optional, only used in a few places, If absent it just uses the layer id.
+    symbol: "S", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
 		points: new Decimal(0),
     }},
     color: "#5E33FF",
-    requires: new Decimal(10), // Can be a function that takes requirement increases into account
-    resource: "test", // Name of prestige currency
+    requires: new Decimal(1e12), // Can be a function that takes requirement increases into account
+    resource: "shards", // Name of prestige currency
     baseResource: "points", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
-    type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
-    exponent: 0.5, // Prestige currency exponent
+    type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    exponent: 0.33, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         return mult
