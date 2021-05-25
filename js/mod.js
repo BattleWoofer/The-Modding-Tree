@@ -49,6 +49,8 @@ function getPointGen() {
 
 	gain = gain.mul(tmp.a.effect)
 	gain = gain.times(tmp.p.buyables[11].effect)
+	gain = gain.times(tmp.p.buyables[12].effect).add(1)
+
 
 	return gain
 }

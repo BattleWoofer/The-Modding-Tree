@@ -268,7 +268,7 @@ addLayer("s", {
     },
     row: 1, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
-        {key: "t", description: "t: Reset for test", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
+        {key: "s", description: "s: Reset for Shards", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return true}
 })
