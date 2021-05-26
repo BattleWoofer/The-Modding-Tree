@@ -56,6 +56,7 @@ addLayer("p", {
 
             effect() {
                eff = new Decimal(2);
+               eff = Decimal.pow(eff, player.s.effect)
                return eff
             },
             effectDisplay() { return format(tmp.p.upgrades[13].effect)+"x" },
@@ -260,6 +261,24 @@ addLayer("s", {
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     canBuyMax(){return true},
     exponent: 0.33, // Prestige currency exponent
+
+
+    effbase(){
+        eff = 0.25
+        return eff
+    },
+    effect(){
+        let eff = this.effbase,
+        eff = Decimal.add(player.s.points, 1).pow(eff)
+        return eff
+    },
+    effectDescription() {
+        return "which brings the third producer upgrade to the power of " + format(tmp.s.effect)
+    },
+
+
+
+
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         return mult
