@@ -55,8 +55,7 @@ addLayer("p", {
             cost: new Decimal(25),
 
             effect() {
-               eff = new Decimal(2);
-               eff = Decimal.pow(eff, player.s.effect)
+               eff = Decimal.pow(2, player.s.effect)
                return eff
             },
             effectDisplay() { return format(tmp.p.upgrades[13].effect)+"x" },
