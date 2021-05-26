@@ -43,8 +43,14 @@ addLayer("p", {
             description: "Producers boost production",
             cost: new Decimal(10),
 
+            base(){
+                let base = new Decimal(2)
+                return base
+            },
             effect() {
-               eff = new Decimal(1.1).pow(player.p.points).add(1);
+               let eff = this.base
+               let seff = player.s.effect
+               eff = (eff, seff)
                return eff
             },
             effectDisplay() { return format(tmp.p.upgrades[12].effect)+"x" },
