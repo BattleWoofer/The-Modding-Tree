@@ -268,8 +268,7 @@ addLayer("s", {
         return eff
     },
     effect(){
-        let eff = this.effbase,
-        eff = Decimal.add(player.s.points, 1).pow(eff)
+        eff = Decimal.add(player.s.points, 1).pow(0.25)
         return eff
     },
     effectDescription() {
