@@ -77,7 +77,7 @@ addLayer("p", {
             },
             effect() {
                 let eff = this.base()
-                if(hasPUpg(15)) eff = eff.pow(getPUpgEff(15))
+                if(hasUpgrade("p",15)) eff = eff.pow(upgradeEffect("p", 15))
                 return eff
             },
             effectDisplay() { return format(tmp.p.upgrades[14].effect)+"x" },
