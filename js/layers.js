@@ -26,6 +26,11 @@ addLayer("p", {
     ],
     layerShown(){return true},
 
+    canBuyMax(){
+        if (hasMilestone("s", 1)) return true
+        else return false
+    },
+
     upgrades: {
          rows: 2,
          cols: 5,
@@ -53,7 +58,8 @@ addLayer("p", {
         13: {
             description: "Gain a static boost",
             cost: new Decimal(25),
-
+            
+            
             effect() {
                eff = Decimal.pow(2, tmp.s.effect)
                return eff
@@ -63,16 +69,32 @@ addLayer("p", {
 
         14: {
             description: "Boost string gain based on strings",
-            cost: new Decimal(34),
-
+            cost: new Decimal(28),
+            
+            base(){
+                base = player.points.plus(1).log(5).pow(1.5);
+                return base
+            },
             effect() {
-                eff = player.points.plus(1).log(5).pow(1.5);
+                let eff = this.base()
+                if(hasPUpg(15)) eff = eff.pow(getPUpgEff(15))
                 return eff
             },
             effectDisplay() { return format(tmp.p.upgrades[14].effect)+"x" },
         },
 
-        21: {
+        15: {
+            description: "Raise the last upgrade based on strings",
+            cost: new Decimal(34),
+
+            effect(){
+                eff = player.points.add(10).log(10).pow(0.5)
+                return eff
+            },
+            effectDisplay() { return format(tmp.p.upgrades[15].effect)+"x" },
+        }
+
+       /* 21: {
             description: "Unlock Achievements",
             cost: new Decimal(25),
 
@@ -80,7 +102,7 @@ addLayer("p", {
                eff = new Decimal(2);
                return eff
             },
-        },
+        },*/
         },
         buyables: {
             rows: 1,
@@ -159,7 +181,7 @@ addLayer("p", {
     }
 )
 
-addLayer("a", {
+/*addLayer("a", {
     name: "Acheivements",
     symbol: "A",
     position: 0,
@@ -237,9 +259,19 @@ addLayer("a", {
                 addPoints("a",1)
             }
         },
+        15: {
+            name: "NULL",
+            tooltip: "1 AP: Have at least one shard",
+            done(){
+                return player.s.points.gte(1)
+            },
+            onComplete() {
+                addPoints("a",1)
+            }
+        },
     }
 
-})
+})  */
 
 
 
@@ -267,13 +299,12 @@ addLayer("s", {
         return eff
     },
     effect(){
-        eff = Decimal.add(player.s.points, 1).pow(0.25)
+        eff = Decimal.add(player.s.points, 1).pow(0.2)
         return eff
     },
     effectDescription() {
         return "which brings the third producer upgrade to the power of " + format(tmp.s.effect)
     },
-
 
 
 
@@ -288,5 +319,14 @@ addLayer("s", {
     hotkeys: [
         {key: "s", description: "s: Reset for Shards", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    layerShown(){return true}
+    layerShown(){return true},
+
+    milestones: {
+        0: {
+            requirementDescription: "100,000 shards",
+            effectDescription: "Gain the ability to buy max producers",
+            done() { return player.s.total.gte(100000) }
+        },
+    }
+
 })
