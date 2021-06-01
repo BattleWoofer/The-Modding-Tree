@@ -77,7 +77,8 @@ addLayer("p", {
             },
             effect() {
                 let eff = this.base()
-                if(hasUpgrade("p",15)) eff = eff.pow(upgradeEffect("p", 15))
+                let upg15eff = player.points.add(10).log(10).pow(0.5)
+                if(hasUpgrade("p",15)) eff = eff.pow(upg15eff)
                 return eff
             },
             effectDisplay() { return format(tmp.p.upgrades[14].effect)+"x" },
