@@ -182,7 +182,7 @@ addLayer("p", {
     }
 )
 
-/*addLayer("a", {
+addLayer("a", {
     name: "Acheivements",
     symbol: "A",
     position: 0,
@@ -196,7 +196,7 @@ addLayer("p", {
     row: "side",
     layerShown() {return true},
     effbase(){
-        eff = new Decimal(2)
+        eff = new Decimal(1)
         return eff
     },
     effect(){
@@ -272,7 +272,7 @@ addLayer("p", {
         },
     }
 
-})  */
+})  
 
 
 
