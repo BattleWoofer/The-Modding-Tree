@@ -22,13 +22,12 @@ addLayer("p", {
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
-        {key: "p", description: "P: Reset for prestige points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
+        {key: "p", description: "P: Reset for Producers", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return true},
 
     canBuyMax(){
-        if (hasMilestone("s", 1)) return true
-        else return false
+        return hasMilestone("s", 1)
     },
 
     upgrades: {
@@ -196,7 +195,7 @@ addLayer("a", {
     row: "side",
     layerShown() {return true},
     effbase(){
-        eff = new Decimal(1)
+        eff = new Decimal(1.1)
         return eff
     },
     effect(){
@@ -324,6 +323,11 @@ addLayer("s", {
 
     milestones: {
         0: {
+            requirementDescription: "1 shard",
+            effectDescription: "You always have the effect of the third proucer upgrade ^0.25",
+            done() { return player.s.total.gte(1) }
+        },
+        1: {
             requirementDescription: "100,000 shards",
             effectDescription: "Gain the ability to buy max producers",
             done() { return player.s.total.gte(100000) }
