@@ -269,6 +269,16 @@ addLayer("a", {
                 addPoints("a",1)
             }
         },
+    },
+
+    upgrades: {
+        rows:1,
+        cols:1,
+        11: {
+            
+            description: "WWWWWWWWWWWWW",
+            cost: new Decimal(0),
+       },
     }
 
 })  
