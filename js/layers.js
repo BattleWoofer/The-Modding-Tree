@@ -195,7 +195,7 @@ addLayer("a", {
     row: "side",
     layerShown() {return true},
     effbase(){
-        eff = new Decimal(1.1)
+        eff = new Decimal(1.5)
         return eff
     },
     effect(){
