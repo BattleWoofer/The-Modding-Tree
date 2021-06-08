@@ -85,10 +85,10 @@ addLayer("p", {
 
         15: {
             description: "Raise the last upgrade based on strings",
-            cost: new Decimal(34),
+            cost: new Decimal(36),
 
             effect(){
-                eff = player.points.add(10).log(10).pow(0.5)
+                eff = player.points.add(10).log(10).pow(0.25)
                 return eff
             },
             effectDisplay() { return format(tmp.p.upgrades[15].effect)+"x" },
@@ -208,7 +208,7 @@ addLayer("a", {
     },
     achievements:{
         rows: 1,
-        cols: 2,
+        cols: 5,
         11: {
             name: "A Start",
             tooltip: "1 AP: Have 20,000 strings",
