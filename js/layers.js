@@ -208,7 +208,7 @@ addLayer("a", {
     },
     achievements:{
         rows: 1,
-        cols: 5,
+        cols: 6,
         11: {
             name: "A Start",
             tooltip: "1 AP: Have 20,000 strings",
@@ -260,6 +260,16 @@ addLayer("a", {
             }
         },
         15: {
+            name: "Almost There",
+            tooltip: "1 AP: Have 75 Producers",
+            done(){
+                return player.p.points.gte(75)
+            },
+            onComplete() {
+                addPoints("a",1)
+            }
+        },
+        16: {
             name: "NULL",
             tooltip: "1 AP: Have at least one shard",
             done(){
