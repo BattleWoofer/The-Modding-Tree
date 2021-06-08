@@ -76,14 +76,14 @@ addLayer("p", {
             },
             effect() {
                 let eff = this.base()
-                let upg15eff = player.points.add(10).log(10).pow(0.5)
-                if(hasUpgrade("p",15)) eff = eff.pow(upg15eff)
+                //let upg15eff = player.points.add(10).log(10).pow(0.5)
+                //if(hasUpgrade("p",15)) eff = eff.pow(upg15eff)
                 return eff
             },
             effectDisplay() { return format(tmp.p.upgrades[14].effect)+"x" },
         },
 
-        15: {
+        /* 15: {
             description: "Raise the last upgrade based on strings",
             cost: new Decimal(36),
 
@@ -92,9 +92,9 @@ addLayer("p", {
                 return eff
             },
             effectDisplay() { return format(tmp.p.upgrades[15].effect)+"x" },
-        }
+        }  
 
-       /* 21: {
+        21: {
             description: "Unlock Achievements",
             cost: new Decimal(25),
 
