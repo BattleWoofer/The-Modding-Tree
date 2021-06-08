@@ -71,7 +71,7 @@ addLayer("p", {
             cost: new Decimal(28),
             
             base(){
-                base = player.points.plus(1).log(5).pow(1.5);
+                base = player.points.plus(7).log(7).pow(2);
                 return base
             },
             effect() {
@@ -319,7 +319,7 @@ addLayer("s", {
         return eff
     },
     effect(){
-        eff = Decimal.add(player.s.points, 1).pow(0.2)
+        eff = Decimal.add(player.s.points, 1).pow(0.25)
         return eff
     },
     effectDescription() {
