@@ -27,7 +27,7 @@ addLayer("p", {
     layerShown(){return true},
 
     canBuyMax(){
-        return hasMilestone("s", 1)
+        return hasMilestone("s", 0)
     },
 
     upgrades: {
@@ -207,7 +207,7 @@ addLayer("a", {
         return "which boosts string gain by " + format(tmp.a.effect)
     },
     achievements:{
-        rows: 1,
+        rows: 2,
         cols: 6,
         11: {
             name: "A Start",
@@ -279,17 +279,29 @@ addLayer("a", {
                 addPoints("a",1)
             }
         },
+        21: {
+            name: "Softcap Soon?",
+            tooltip: "1 AP: Have 1e18 strings",
+            done(){
+                return player.points.gte(1e18)
+            },
+            onComplete() {
+                addPoints("a",1)
+            }
+        },
+        22: {
+            name: "Gaming",
+            tooltip: "1 AP: Have effect of Particle Accelerators be higher than the effect of the second producer upgrade",
+            done(){
+                return player.p.buyables[11].effect.gte(player.p.upgrades[12].effect)
+            },
+            onComplete() {
+                addPoints("a",1)
+            }
+        },
     },
 
-    upgrades: {
-        rows:1,
-        cols:1,
-        11: {
-            
-            description: "WWWWWWWWWWWWW",
-            cost: new Decimal(0),
-       },
-    }
+    
 
 })  
 
@@ -343,11 +355,6 @@ addLayer("s", {
 
     milestones: {
         0: {
-            requirementDescription: "1 shard",
-            effectDescription: "You always have the effect of the third proucer upgrade ^0.25",
-            done() { return player.s.total.gte(1) }
-        },
-        1: {
             requirementDescription: "100,000 shards",
             effectDescription: "Gain the ability to buy max producers",
             done() { return player.s.total.gte(100000) }
