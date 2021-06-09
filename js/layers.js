@@ -425,7 +425,12 @@ addLayer("m",{
     },
     layerShown(){return true},
 
-
+    gainMult() {                            // Returns your multiplier to your gain of the prestige resource.
+        return new Decimal(1)               // Factor in any bonuses multiplying gain here.
+    },
+    gainExp() {                             // Returns your exponent to your gain of the prestige resource.
+        return new Decimal(1)
+    },
 
 
 
