@@ -299,6 +299,16 @@ addLayer("a", {
                 addPoints("a",1)
             }
         },
+        23: {
+            name: "(softcapped)",
+            tooltip: "1 AP: Have 104976 shards",
+            done(){
+                return player.s.points.gte(104976)
+            },
+            onComplete() {
+                addPoints("a",1)
+            }
+        },
     },
 
     
@@ -332,6 +342,7 @@ addLayer("s", {
     },
     effect(){
         eff = Decimal.add(player.s.points, 1).pow(0.25)
+        if (eff.gte(18)) eff = new Decimal(18).add(player.s.points.sub(100000).pow(0.06))
         return eff
     },
     effectDescription() {
