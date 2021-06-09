@@ -423,7 +423,7 @@ addLayer("m",{
     effectDescription() {
         return "which adds " + format(tmp.m.effect) + " to the effect of Particle Accerators and divides their cost by " + format(tmp.m.effect2)
     },
-
+    layerShown(){return true},
 
 
 
