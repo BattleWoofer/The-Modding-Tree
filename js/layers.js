@@ -322,6 +322,16 @@ addLayer("a", {
                 addPoints("a",1)
             }
         },
+        23: {
+            name: "Speed",
+            tooltip: "2 AP: Have 250 Particle Accelerators",
+            done(){
+                return player.p.buyables[11].gte(250)
+            },
+            onComplete() {
+                addPoints("a",2)
+            }
+        },
     },
 
     
@@ -402,7 +412,7 @@ addLayer("m",{
     baseAmount() {return player.s.points},
     type: "static",
     base: new Decimal(1.666666),
-    exponent: new Decimal(999),
+    exponent: new Decimal(1.5503),
     row: 2,
 
     hotkeys: [
