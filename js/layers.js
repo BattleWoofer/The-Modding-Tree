@@ -116,7 +116,8 @@ addLayer("p", {
                     return total
                 },
                 base(){
-                    base = new Decimal(1.1)
+                    let base = new Decimal(1.1)
+                    base = base.add(tmp.m.effect)
                     return base
                 },
                 effect(){
@@ -126,7 +127,7 @@ addLayer("p", {
                     return eff
                 },
                 cost(x=player[this.layer].buyables[this.id]) { // cost for buying xth buyable, can be an object if there are multiple currencies
-                    let cost = Decimal.pow(1.5, x).mul(1e9)
+                    let cost = Decimal.pow(1.5, x).mul(1e9).div(tmp.m.effect2)
                     return cost.floor()},
                     canAfford() {
                         return player.points.gte(tmp[this.layer].buyables[this.id].cost)},
@@ -311,6 +312,16 @@ addLayer("a", {
                 addPoints("a",1)
             }
         },
+        23: {
+            name: "Attraction",
+            tooltip: "1 AP: Get magnetic force",
+            done(){
+                return player.m.points.gte(1)
+            },
+            onComplete() {
+                addPoints("a",1)
+            }
+        },
     },
 
     
@@ -375,3 +386,52 @@ addLayer("s", {
     }
 
 })
+
+addLayer("m",{
+    name:"magnetic force",
+    symbol: "M",
+    position:0,
+    startData(){ return{
+        unlocked: true,
+        points: new Decimal(0),
+    }},
+    color: "#CB29F2",
+    requires: new Decimal(600000),
+    resource: "magnetic force",
+    baseResource: "shards",
+    baseAmount() {return player.s.points},
+    type: "static",
+    canBuyMax(){
+        return false
+    },
+    base: new Decimal(1.666666),
+    exponent: new Decimal(999),
+
+    hotkeys: [
+        {key: "m", description: "m: Reset for Magnetic Force", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
+    ],
+
+    effect(){
+        let eff = Decimal.mul(player.m.points, 0.01).pow(0.66)
+        return eff
+    },
+    effect2(){
+    let eff2 = Decimal.pow(2.25, player.m.points)
+    return eff
+    },
+
+    effectDescription() {
+        return "which adds " + format(tmp.m.effect) + " to the effect of Particle Accerators and divides their cost by " + format(tmp.m.effect2)
+    },
+
+
+
+
+
+
+
+
+
+}
+
+)
