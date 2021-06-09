@@ -401,11 +401,9 @@ addLayer("m",{
     baseResource: "shards",
     baseAmount() {return player.s.points},
     type: "static",
-    canBuyMax(){
-        return false
-    },
     base: new Decimal(1.666666),
     exponent: new Decimal(999),
+    row: 2,
 
     hotkeys: [
         {key: "m", description: "m: Reset for Magnetic Force", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -424,7 +422,6 @@ addLayer("m",{
         return "which adds " + format(tmp.m.effect) + " to the effect of Particle Accerators and divides their cost by " + format(tmp.m.effect2)
     },
     layerShown(){return true},
-
     gainMult() {                            // Returns your multiplier to your gain of the prestige resource.
         return new Decimal(1)               // Factor in any bonuses multiplying gain here.
     },
