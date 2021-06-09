@@ -291,9 +291,9 @@ addLayer("a", {
         },
         22: {
             name: "Gaming",
-            tooltip: "1 AP: Have effect of Particle Accelerators be higher than the effect of the second producer upgrade",
+            tooltip: "1 AP: Have your Particle Accerator total multiplier be more than 5x while the second upgrades effect is less than 5x",
             done(){
-                return player.p.buyables[11].eff.gte(player.p.upgrades[12].eff)
+                return player.p.buyables[11].gte(17) && player.p.points.lte(16)
             },
             onComplete() {
                 addPoints("a",1)
