@@ -49,6 +49,7 @@ addLayer("p", {
 
             effect() {
                eff = new Decimal(1.1).pow(player.p.points).add(1);
+               if (player.p.points.gte(308)) {eff = new Decimal(1.05).pow(player.p.points)}
                return eff
             },
             effectDisplay() { return format(tmp.p.upgrades[12].effect)+"x" },
@@ -342,7 +343,7 @@ addLayer("s", {
     },
     effect(){
         eff = Decimal.add(player.s.points, 1).pow(0.25)
-        if (eff.gte(18)) eff = new Decimal(18).add(player.s.points.sub(100000).pow(0.06))
+        if (eff.gte(18)) eff = new Decimal(18).add(player.s.points.sub(104976).pow(0.06)).sub(1)
         return eff
     },
     effectDescription() {
