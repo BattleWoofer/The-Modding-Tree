@@ -50,7 +50,7 @@ addLayer("p", {
             effect() {
                eff = new Decimal(1.1).pow(player.p.points).add(1);
                affProd = player.p.points.sub(308)
-               if (player.p.points.gte(308)) {eff = new Decimal(1.05).pow(affProd).add(6e12)}
+               if (player.p.points.gte(308)) {eff = new Decimal(1.05).pow(affProd).mul(6e12)}
                return eff
             },
             effectDisplay() { return format(tmp.p.upgrades[12].effect)+"x" },
