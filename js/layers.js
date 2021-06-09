@@ -412,12 +412,12 @@ addLayer("m",{
     ],
 
     effect(){
-        let eff = Decimal.mul(player.m.points, 0.01).pow(0.66)
-        return eff
+    let eff = Decimal.mul(player.m.points, 0.01).pow(0.66)
+    return eff
     },
     effect2(){
     let eff2 = Decimal.pow(2.25, player.m.points)
-    return eff
+    return eff2
     },
 
     effectDescription() {
