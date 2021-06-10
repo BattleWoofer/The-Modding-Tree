@@ -374,12 +374,12 @@ addLayer("s", {
         return eff
     },
     softbase(){
-        let seff = new Decimal(0.06)
-        if(hasSUpg(11)) seff = seff.add(0.04)
-        return seff
+        let softbase = new Decimal(0.06)
+        if(hasSUpg(11)) softbase = softbase.add(0.04)
+        return softbase
     },
     effect(){
-        let softcap = this.seff
+        let softcap = this.softbase
         eff = Decimal.add(player.s.points, 1).pow(0.25)
         //if (eff.gte(18)) eff = new Decimal(18).add(player.s.points.sub(104976).pow(softcap)).sub(1)
         eff = softcap
