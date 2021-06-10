@@ -1,3 +1,13 @@
+function hasSUpg(id){
+    return hasUpgrade("s",id)}
+
+
+
+
+
+
+
+
 addLayer("p", {
     name: "producers", // This is optional, only used in a few places, If absent it just uses the layer id.
     symbol: "P", // This appears on the layer's node. Default is the id with the first letter capitalized
@@ -363,9 +373,15 @@ addLayer("s", {
         eff = 0.25
         return eff
     },
+    seff(){
+        let seff = new Decimal(0.06)
+        if (hasSUpg(11)) seff = new Decimal(0.1)
+        return seff
+    },
     effect(){
+        let softcap = this.seff
         eff = Decimal.add(player.s.points, 1).pow(0.25)
-        if (eff.gte(18)) eff = new Decimal(18).add(player.s.points.sub(104976).pow(0.06)).sub(1)
+        if (eff.gte(18)) eff = new Decimal(18).add(player.s.points.sub(104976).pow(softcap)).sub(1)
         return eff
     },
     effectDescription() {
@@ -393,6 +409,16 @@ addLayer("s", {
             effectDescription: "Gain the ability to buy max producers",
             done() { return player.s.total.gte(100000) }
         },
+    },
+
+    upgrades: {
+        rows:1,
+        cols:1,
+
+        11: {
+            description: "Weaken the shard effect softcap",
+            cost: new Decimal(5555555),    
+        }
     }
 
 })
