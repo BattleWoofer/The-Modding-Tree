@@ -412,7 +412,7 @@ addLayer("m",{
     baseAmount() {return player.s.points},
     type: "static",
     base: new Decimal(1.666666),
-    exponent: new Decimal(1.5503),
+    exponent: new Decimal(1.66666),
     row: 2,
 
     hotkeys: [
