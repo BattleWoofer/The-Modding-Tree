@@ -375,7 +375,7 @@ addLayer("s", {
     },
     softbase(){
         let seff = new Decimal(0.06)
-        if (hasSUpg(11)) seff = new Decimal(0.1)
+        if(hasSUpg(11)) seff = seff.add(0.04)
         return seff
     },
     effect(){
