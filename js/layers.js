@@ -341,7 +341,7 @@ addLayer("a", {
                 addPoints("a",1)
             }
         },
-        23: {
+        24: {
             name: "Attraction",
             tooltip: "1 AP: Get magnetic force",
             done(){
@@ -351,7 +351,7 @@ addLayer("a", {
                 addPoints("a",1)
             }
         },
-        23: {
+        25: {
             name: "Speed",
             tooltip: "2 AP: Have 250 Particle Accelerators",
             done(){
@@ -361,7 +361,7 @@ addLayer("a", {
                 addPoints("a",2)
             }
         },
-        23: {
+        26: {
             name: "Funny",
             tooltip: "1 AP: Have 6.9e69 strings",
             done(){
