@@ -42,7 +42,7 @@ addLayer("p", {
 
     upgrades: {
          rows: 2,
-         cols: 5,
+         cols: 4,
             11: {
             
              description: "Producers produce strings!",
@@ -115,6 +115,24 @@ addLayer("p", {
                return eff
             },
         },*/
+
+        21: {
+            description: "Particle Accelerators past 308 multiply shard gain by 1.01 (multiplicative)",
+            cost: (888),
+
+            effect() {
+                let eff = new Decimal(1.01)
+                if (tmp.p.buyables[11].gte(308)) eff = eff.pow(tmp.p.buyables[11].sub(308))
+            },
+            effectDisplay() { return format(tmp.p.upgrades[21].effect)+"x" },
+
+        }
+
+
+
+
+
+
         },
         buyables: {
             rows: 1,
@@ -342,6 +360,16 @@ addLayer("a", {
                 addPoints("a",2)
             }
         },
+        23: {
+            name: "Funny",
+            tooltip: "1 AP: Have 6.9e69 strings",
+            done(){
+                return player.points.gte(6.9e69)
+            },
+            onComplete() {
+                addPoints("a",1)
+            }
+        },
     },
 
     
@@ -407,6 +435,11 @@ addLayer("s", {
             requirementDescription: "100,000 shards",
             effectDescription: "Gain the ability to buy max producers",
             done() { return player.s.total.gte(100000) }
+        },
+        1: {
+            requirementDescription: "7,777,777 shards",
+            effectDescription: "Unlock more Producer Upgrades",
+            done() { return player.s.total.gte(7777777) }
         },
     },
 
