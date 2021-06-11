@@ -123,6 +123,7 @@ addLayer("p", {
             effect() {
                 let eff = new Decimal(1.01)
                 if (player.p.buyables[11].gte(308)) eff = eff.pow(player.p.buyables[11].sub(308))
+                return eff
             },
             effectDisplay() { return format(tmp.p.upgrades[21].effect)+"x" },
 
@@ -419,6 +420,7 @@ addLayer("s", {
 
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
+        if(hasUpgrade("p", 11)) mult = mult.mul(tmp.p.upgrades[21].effect)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
