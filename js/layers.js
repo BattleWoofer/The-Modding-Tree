@@ -122,7 +122,7 @@ addLayer("p", {
 
             effect() {
                 let eff = new Decimal(1.01)
-                if (tmp.p.buyables[11].gte(308)) eff = eff.pow(tmp.p.buyables[11].sub(308))
+                if (player.p.buyables[11].gte(308)) eff = eff.pow(player.p.buyables[11].sub(308))
             },
             effectDisplay() { return format(tmp.p.upgrades[21].effect)+"x" },
 
