@@ -420,7 +420,7 @@ addLayer("s", {
 
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(10)
-        //if(hasUpgrade("p", 21)) mult = mult.mul(tmp.p.upgrades[21].effect)
+        if(hasUpgrade("p", 21)) mult = mult.mul(tmp.p.upgrades[21].effect)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
