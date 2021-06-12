@@ -419,12 +419,11 @@ addLayer("s", {
 
 
     gainMult() { // Calculate the multiplier for main currency from bonuses
-        mult = new Decimal(1e10)
-        //if(hasUpgrade("p", 21)) mult = mult.mul(tmp.p.upgrades[21].effect)
+        mult = new Decimal(1)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        return new Decimal(1)
+        return new Decimal(10)
     },
     row: 1, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
