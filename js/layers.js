@@ -36,6 +36,11 @@ addLayer("p", {
     ],
     layerShown(){return true},
 
+    directMult() {
+        mult = new Decimal(1)
+        return mult
+    },
+
     canBuyMax(){
         return hasMilestone("s", 0)
     },
@@ -428,11 +433,7 @@ addLayer("s", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    directMult() {
-        mult = new Decimal(1)
-        if(hasUpgrade("p", 11)) {mult = mult.mul(tmp.p.upgrades[21].effect)}
-        return mult
-    },
+    
     row: 1, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
         {key: "s", description: "s: Reset for Shards", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
