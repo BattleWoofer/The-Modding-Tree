@@ -421,7 +421,7 @@ addLayer("s", {
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
      //   mult = mult.div(tmp.p.upgrades[21].effect)
-     if(hasUpgrade("m",11)){mult = mult.div(10)}
+    // if(hasUpgrade("m",11)){mult = mult.div(10)}
 
         return mult
     },
@@ -430,7 +430,7 @@ addLayer("s", {
     },
     directMult() {
         mult = new Decimal(1)
-        if(hasUpgrade("m", 11)) {mult = mult.mul(100)}
+        if(hasUpgrade("p", 11)) {mult = mult.mul(tmp.p.upgrades[21].effect)}
         return mult
     },
     row: 1, // Row the layer is in on the tree (0 is the first row)
@@ -507,7 +507,7 @@ addLayer("m",{
     },
 
 
-    upgrades: {
+  /*  upgrades: {
         rows: 1,
         cols: 1,
 
@@ -515,7 +515,7 @@ addLayer("m",{
             description: "DEBUG DEBUG DEBUG DEBUG DEBUG",
             cost: new Decimal(0),
         }
-    }
+    } */
 
 
 
