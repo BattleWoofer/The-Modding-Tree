@@ -426,6 +426,11 @@ addLayer("s", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
+    directMult() {
+        mult = new Decimal(1)
+        if(hasUpgrade("m", 11)) {mult = mult.mul(100)}
+        return mult
+    },
     row: 1, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
         {key: "s", description: "s: Reset for Shards", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -500,7 +505,15 @@ addLayer("m",{
     },
 
 
+    upgrades: {
+        rows: 1,
+        cols: 1,
 
+        11: {
+            description: "DEBUG DEBUG DEBUG DEBUG DEBUG",
+            cost: new Decimal(0),
+        }
+    }
 
 
 
