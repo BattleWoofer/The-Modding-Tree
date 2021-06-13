@@ -36,10 +36,10 @@ addLayer("p", {
     ],
     layerShown(){return true},
 
-    directMult() {
+    /*directMult() {
         mult = new Decimal(1)
         return mult
-    },
+    },*/
 
     canBuyMax(){
         return hasMilestone("s", 0)
