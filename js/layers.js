@@ -127,7 +127,7 @@ addLayer("p", {
 
             effect() {
                 let eff = new Decimal(0.5)
-                eff = Decimal.pow(player.p.points,)
+                eff = Decimal.pow(player.p.points, eff)
                 return eff
             },
             effectDisplay() { return format(tmp.p.upgrades[21].effect)+"x" },
@@ -182,7 +182,7 @@ addLayer("p", {
                     return "Multiply string gain by "+format(this.base())+".\n\
                     Cost: " + format(tmp[this.layer].buyables[this.id].cost)+" strings\n\
                     Effect: " + format(tmp[this.layer].buyables[this.id].effect)+"x\n\
-                    Amount: " + formatWhole(getBuyableAmount("p", 11)) + ex
+                    Amount: " + formatWhole(getBuyableAmount("p", 11)) + " + " + ex
                 },
             },
             12: {
