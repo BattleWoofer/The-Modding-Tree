@@ -122,12 +122,12 @@ addLayer("p", {
         },*/
 
         21: {
-            description: "Particle Accelerators past 308 multiply shard gain by 1.01 (multiplicative)",
+            description: "Producers also add extra Particle Accelerators",
             cost: (888),
 
             effect() {
-                let eff = new Decimal(1.01)
-                if (player.p.buyables[11].gte(308)) eff = eff.pow(player.p.buyables[11].sub(308))
+                let eff = new Decimal(0.5)
+                eff = Decimal.pow(player.p.points,)
                 return eff
             },
             effectDisplay() { return format(tmp.p.upgrades[21].effect)+"x" },
@@ -145,8 +145,13 @@ addLayer("p", {
             cols: 2,
             11: {
                 title: "Particle Accererators",
+                extra(){
+                    let extra = new Decimal(0)
+                    extra = extra.add(tmp.p.upgrades[21].effect)
+                    return extra
+                },
                 total(){
-                    let total = getBuyableAmount("p",11)
+                    let total = getBuyableAmount("p",11).add(tmp[this.layer].buyables[this.id].extra)
                     return total
                 },
                 base(){
@@ -173,10 +178,11 @@ addLayer("p", {
                     }
                 },
                 display() { // Everything else displayed in the buyable button after the title
+                    ex = tmp.p.buyables[11].extra
                     return "Multiply string gain by "+format(this.base())+".\n\
                     Cost: " + format(tmp[this.layer].buyables[this.id].cost)+" strings\n\
                     Effect: " + format(tmp[this.layer].buyables[this.id].effect)+"x\n\
-                    Amount: " + formatWhole(getBuyableAmount("p", 11))
+                    Amount: " + formatWhole(getBuyableAmount("p", 11)) + ex
                 },
             },
             12: {
