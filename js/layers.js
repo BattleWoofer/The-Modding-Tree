@@ -180,7 +180,6 @@ addLayer("p", {
                 display() { // Everything else displayed in the buyable button after the title
                     let ex = ""
                     if (hasUpgrade("p", 21)) extra = "+" + formatWhole(tmp.p.buyables[11].extra)
-                    ex = tmp.p.buyables[11].extra
                     return "Multiply string gain by "+format(this.base())+".\n\
                     Cost: " + format(tmp[this.layer].buyables[this.id].cost)+" strings\n\
                     Effect: " + format(tmp[this.layer].buyables[this.id].effect)+"x\n\
@@ -417,7 +416,7 @@ addLayer("s", {
     },
     softbase(){
         let softbase = new Decimal(0.06)
-        if(hasSUpg(11)) softbase = softbase.add(0.04)
+        if(hasSUpg(11)) softbase = softbase.add(0.06)
         return softbase
     },
     effect(){
@@ -467,7 +466,7 @@ addLayer("s", {
 
         11: {
             description: "Weaken the shard effect softcap",
-            cost: new Decimal(5555555),    
+            cost: new Decimal(5432100),    
         }
     }
 
