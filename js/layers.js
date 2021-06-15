@@ -147,7 +147,7 @@ addLayer("p", {
                 title: "Particle Accererators",
                 extra(){
                     let extra = new Decimal(0)
-                    extra = extra.add(tmp.p.upgrades[21].effect)
+                    if(hasUpgrade("p", 21)) {extra = extra.add(tmp.p.upgrades[21].effect)}
                     return extra
                 },
                 total(){
@@ -178,6 +178,8 @@ addLayer("p", {
                     }
                 },
                 display() { // Everything else displayed in the buyable button after the title
+                    let ex = ""
+                    if (hasUpg("p", 21)) extra = "+" + formatWhole(tmp.p.buyables[11].extra)
                     ex = tmp.p.buyables[11].extra
                     return "Multiply string gain by "+format(this.base())+".\n\
                     Cost: " + format(tmp[this.layer].buyables[this.id].cost)+" strings\n\
