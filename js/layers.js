@@ -65,7 +65,7 @@ addLayer("p", {
 
             soft() {
                 let soft = new Decimal(1.05)
-                if (hasUpgrade("p", 22)) {soft = soft.add(player.p.upgrades[22].effect)}
+                if (hasUpgrade("p", 22)) {soft = new Decimal(1.05).add(player.p.upgrades[22].effect)}
                 return soft
             },
             effect() {
@@ -147,7 +147,7 @@ addLayer("p", {
 
             effect() {
                 let eff = player.p.upgrades.length
-                eff = Decimal.mul(0.01, eff)
+                eff = Decimal.mul(0.001, eff)
                 return eff
             },
             effectDisplay() { return format(tmp.p.upgrades[22].effect)+"x" },
