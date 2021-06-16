@@ -146,7 +146,7 @@ addLayer("p", {
             cost: (1738),
 
             effect() {
-                let eff = player.v.upgrades.length
+                let eff = player.p.upgrades.length
                 eff = eff.mul(0.01)
                 return eff
             },
