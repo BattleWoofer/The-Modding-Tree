@@ -65,7 +65,7 @@ addLayer("p", {
 
             soft() {
                 let soft = new Decimal(1.05)
-                if (hasUpgrade("p", 22)) {soft = new Decimal(1.05).add(player.p.upgrades[22].effect)}
+                if (hasUpgrade("p", 22)) soft = soft.add(player.p.upgrades[22].effect)
                 return soft
             },
             effect() {
@@ -200,12 +200,12 @@ addLayer("p", {
                 display() { // Everything else displayed in the buyable button after the title
                     let ex = ""
                     //if (hasUpgrade("p", 21)) extra = "+" + formatWhole(tmp.p.buyables[11].extra)
-                    if (hasUpgrade("p", 21)) extra = "+" + tmp.p.buyables[11].extra
+                    if (hasUpgrade("p", 21)) ex = "+" + tmp.p.buyables[11].ex
 
                     return "Multiply string gain by "+format(this.base())+".\n\
                     Cost: " + format(tmp[this.layer].buyables[this.id].cost)+" strings\n\
                     Effect: " + format(tmp[this.layer].buyables[this.id].effect)+"x\n\
-                    Amount: " + formatWhole(getBuyableAmount("p", 11)) + " + " + ex
+                    Amount: " + formatWhole(getBuyableAmount("p", 11)) + ex
                 },
             },
             12: {
