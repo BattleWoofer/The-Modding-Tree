@@ -62,10 +62,17 @@ addLayer("p", {
             description: "Producers boost production",
             cost: new Decimal(10),
 
+
+            soft() {
+                let soft = new Decimal(1.05)
+                if (hasUpgrade("p", 22)) {soft = soft.add(player.p.upgrades[22].effect)}
+                return soft
+            },
             effect() {
+               soft = this.soft()
                eff = new Decimal(1.1).pow(player.p.points).add(1);
                affProd = player.p.points.sub(308)
-               if (player.p.points.gte(308)) {eff = new Decimal(1.05).pow(affProd).mul(6e12)}
+               if (player.p.points.gte(308)) {eff = new Decimal(soft).pow(affProd).mul(6e12)}
                return eff
             },
             effectDisplay() { return format(tmp.p.upgrades[12].effect)+"x" },
@@ -132,6 +139,19 @@ addLayer("p", {
             },
             effectDisplay() { return format(tmp.p.upgrades[21].effect)+"x" },
 
+        },
+
+        22: {
+            description: "Softcap base of above upgrade is weakened based on producer upgrades bought",
+            cost: (1738),
+
+            effect() {
+                let eff = player.v.upgrades.length
+                eff = eff.mul(0.01)
+                return eff
+            },
+            effectDisplay() { return format(tmp.p.upgrades[22].effect)+"x" },
+
         }
 
 
@@ -179,7 +199,9 @@ addLayer("p", {
                 },
                 display() { // Everything else displayed in the buyable button after the title
                     let ex = ""
-                    if (hasUpgrade("p", 21)) extra = "+" + formatWhole(tmp.p.buyables[11].extra)
+                    //if (hasUpgrade("p", 21)) extra = "+" + formatWhole(tmp.p.buyables[11].extra)
+                    if (hasUpgrade("p", 21)) extra = "+" + tmp.p.buyables[11].extra
+
                     return "Multiply string gain by "+format(this.base())+".\n\
                     Cost: " + format(tmp[this.layer].buyables[this.id].cost)+" strings\n\
                     Effect: " + format(tmp[this.layer].buyables[this.id].effect)+"x\n\
