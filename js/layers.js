@@ -147,7 +147,7 @@ addLayer("p", {
 
             effect() {
                 let eff = player.p.upgrades.length
-                eff = Decimal.mul(0.0001, eff)
+                eff = Decimal.mul(0.00025, eff)
                 return eff
             },
             effectDisplay() { return format(tmp.p.upgrades[22].effect)+"x" },
