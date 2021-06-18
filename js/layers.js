@@ -197,7 +197,7 @@ addLayer("p", {
                     let mult = tmp.p.buyables[11].baseAmount
                     mult = mult.sub(tmp.p.buyables[11].scaleStart)
                     mult = mult.mul(10)
-                    mult = mult.pow(1.2)
+                    mult = mult.pow(20)
                     if(tmp.p.buyables[11].baseAmount.lt(tmp.p.buyables[11].scaleStart)){mult = new Decimal(1)}
                     return mult
                 },
