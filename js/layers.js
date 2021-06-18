@@ -195,6 +195,7 @@ addLayer("p", {
                 },
                 scaleMult(){
                     let mult = tmp.p.buyables[11].baseAmount
+                    mult = mult.sub(tmp.p.buyables[11].scaleStart)
                     mult = mult.mul(10)
                     mult = mult.pow(1.2)
                     if(tmp.p.buyables[11].baseAmount.lt(tmp.p.buyables[11].scaleStart)){mult = new Decimal(1)}
@@ -202,6 +203,7 @@ addLayer("p", {
                 },
                 cost(x=player[this.layer].buyables[this.id]) { // cost for buying xth buyable, can be an object if there are multiple currencies
                     let cost = Decimal.pow(1.5, x).mul(1e9).div(tmp.m.effect2)
+                    cost = cost.mul(tmp.p.buyables[11].scaleMult)
                     return cost.floor()},
                     canAfford() {
                         return player.points.gte(tmp[this.layer].buyables[this.id].cost)},
