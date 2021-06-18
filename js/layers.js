@@ -147,7 +147,7 @@ addLayer("p", {
 
             effect() {
                 let eff = player.p.upgrades.length
-                eff = Decimal.mul(0.00025, eff)
+                eff = Decimal.mul(0.0002, eff)
                 return eff
             },
             effectDisplay() { return format(tmp.p.upgrades[22].effect)+"x" },
@@ -174,6 +174,10 @@ addLayer("p", {
                     let total = getBuyableAmount("p",11).add(tmp[this.layer].buyables[this.id].extra)
                     return total
                 },
+                baseAmount(){
+                    let ba = getBuyableAmount("p", 11)
+                    return ba
+                },
                 base(){
                     let base = new Decimal(1.1)
                     base = base.add(tmp.m.effect)
@@ -184,6 +188,17 @@ addLayer("p", {
                     let base = tmp[this.layer].buyables[this.id].base
                     let eff = Decimal.pow(base, x)
                     return eff
+                },
+                scaleStart(){
+                    let ss = new Decimal(1500)
+                    return ss
+                },
+                scaleMult(){
+                    let mult = tmp.p.buyables[11].baseAmount
+                    mult = mult.mul(10)
+                    mult = mult.pow(1.2)
+                    if(tmp.p.buyables[11].baseAmount.lt(tmp.p.buyables[11].scaleStart)){mult = new Decimal(1)}
+                    return mult
                 },
                 cost(x=player[this.layer].buyables[this.id]) { // cost for buying xth buyable, can be an object if there are multiple currencies
                     let cost = Decimal.pow(1.5, x).mul(1e9).div(tmp.m.effect2)
@@ -403,6 +418,16 @@ addLayer("a", {
             },
             onComplete() {
                 addPoints("a",1)
+            }
+        },
+        26: {
+            name: "No",
+            tooltip: "-13 AP: Have 5000 producers",
+            done(){
+                return player.p.points.gte(5000)
+            },
+            onComplete() {
+                addPoints("a",-13)
             }
         },
     },
