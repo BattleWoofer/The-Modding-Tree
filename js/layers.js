@@ -1,9 +1,9 @@
+
 function hasSUpg(id){
     return hasUpgrade("s",id)}
 
 
-
-
+   
 
 
 
@@ -40,9 +40,20 @@ addLayer("p", {
         mult = new Decimal(1)
         return mult
     },*/
+    automate(diff){
+        buyBuyable("p",11)
+    },
 
     canBuyMax(){
         return hasMilestone("s", 0)
+    },
+
+    resetsNothing(){
+        return hasMilestone("m",0)
+    },
+
+    autoPrestige(){
+        return hasMilestone("m", 1)
     },
 
     upgrades: {
@@ -152,18 +163,21 @@ addLayer("p", {
             },
             effectDisplay() { return format(tmp.p.upgrades[22].effect)+"x" },
 
-        }
+        },
 
 
 
 
-
+        
 
         },
         buyables: {
             rows: 1,
             cols: 2,
             11: {
+
+                
+
                 title: "Particle Accererators",
                 extra(){
                     let extra = new Decimal(0)
@@ -224,6 +238,8 @@ addLayer("p", {
                     Effect: " + format(tmp[this.layer].buyables[this.id].effect)+"x\n\
                     Amount: " + formatWhole(getBuyableAmount("p", 11)) + ex
                 },
+                
+                
             },
             12: {
                 title: "Particle Accererators",
@@ -424,12 +440,12 @@ addLayer("a", {
         },
         26: {
             name: "No",
-            tooltip: "-13 AP: Have 5000 producers",
+            tooltip: "2 AP: Have 5000 producers",
             done(){
                 return player.p.points.gte(5000)
             },
             onComplete() {
-                addPoints("a",-13)
+                addPoints("a",2)
             }
         },
     },
@@ -500,22 +516,27 @@ addLayer("s", {
         0: {
             requirementDescription: "100,000 shards",
             effectDescription: "Gain the ability to buy max producers",
-            done() { return player.s.total.gte(100000) }
+            done() { return player.s.points.gte(100000) }
         },
         1: {
             requirementDescription: "7,777,777 shards",
             effectDescription: "Unlock more Producer Upgrades",
-            done() { return player.s.total.gte(7777777) }
+            done() { return player.s.points.gte(7777777) }
         },
     },
 
     upgrades: {
         rows:1,
-        cols:1,
+        cols:2,
 
         11: {
             description: "Weaken the shard effect softcap",
             cost: new Decimal(5432100),    
+        },
+
+        12: {
+            description: "Weaken the shard effect softcap",
+            cost: new Decimal(0),    
         }
     }
 
@@ -574,7 +595,26 @@ addLayer("m",{
         }
     } */
 
+    milestones: {
+        0: {
+                requirementDescription: "4 magnetic force",
+                effectDescription: "Buying producers no longer resets anything",
+                done() { return player.m.points.gte(4) }
 
+        },
+        1: {
+            requirementDescription: "5 magnetic force",
+            effectDescription: "Buying producers no longer resets anything",
+            done() { return player.m.points.gte(5) }
+
+     },
+     2: {
+                requirementDescription: "6 magnetic force",
+                effectDescription: "Buying producers no longer resets anything",
+                done() { return player.m.points.gte(6) }
+
+        }
+    }
 
 }
 
